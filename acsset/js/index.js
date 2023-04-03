@@ -1,28 +1,28 @@
-// let product1 =[{
-//     img: './acsset/image/ao-mua-cho-be-hoa-tiet-vui-nhon__7.jpg',
-//     description: 'Áo Mưa Cho Bé Họa Tiết Vui Nhộn (Trên 6 tuổi)',
-//     price: '123.000 đ',
-//     id:0,
-// },
-// {
-//     img: './acsset/image/ao-mua-cho-be-in-tho-de-thuong__2.jpg',
-//     description: 'Áo Mưa Cho Bé In Thỏ Dễ Thương (Trên 6 tuổi)',
-//     price: '322.000 đ',
-//     id:1,
-// },
-// {
-//     img: './acsset/image/ao-thun-tay-ngan-in-gau__1.jpg',
-//     description: 'Bộ Short Cho Bé Trai Tay Raplang Mát Mẻ Ngày Hè (13kg-35kg)',
-//     price: '145.000 đ',
-//     id:2,
-// },
-// {
-//     img: './acsset/image/bo-short-cho-be-tay-raplang-mat-me.jpg',
-//     description: 'Bộ Short Cho Bé Trai Tay Raplang Mát Mẻ Ngày Hè (13kg-35kg)',
-//     price: '433.000 đ',
-//     id:3,
-// }] 
-// localStorage.setItem('product',JSON.stringify(product1));
+let product =[{
+    img: './acsset/image/ao-mua-cho-be-hoa-tiet-vui-nhon__7.jpg',
+    description: 'Áo Mưa Cho Bé Họa Tiết Vui Nhộn (Trên 6 tuổi)',
+    price: '123.000 đ',
+    id:0,
+},
+{
+    img: './acsset/image/ao-mua-cho-be-in-tho-de-thuong__2.jpg',
+    description: 'Áo Mưa Cho Bé In Thỏ Dễ Thương (Trên 6 tuổi)',
+    price: '322.000 đ',
+    id:1,
+},
+{
+    img: './acsset/image/ao-thun-tay-ngan-in-gau__1.jpg',
+    description: 'Bộ Short Cho Bé Trai Tay Raplang Mát Mẻ Ngày Hè (13kg-35kg)',
+    price: '145.000 đ',
+    id:2,
+},
+{
+    img: './acsset/image/bo-short-cho-be-tay-raplang-mat-me.jpg',
+    description: 'Bộ Short Cho Bé Trai Tay Raplang Mát Mẻ Ngày Hè (13kg-35kg)',
+    price: '433.000 đ',
+    id:3,
+}] 
+localStorage.setItem('product',JSON.stringify(product));
 let flag = localStorage.getItem('flag');
 let loginBtn = document.querySelector('#login')
 let rigisterBtn = document.querySelector('#register')
@@ -39,7 +39,7 @@ function logout() {
         document.querySelector('#logout').style.display = 'none'; 
 }
 console.log(flag);
-let product = JSON.parse(localStorage.getItem('product'))
+// let product = JSON.parse(localStorage.getItem('product'))
 if (product == null) {
     product = [];
 }
