@@ -1,0 +1,148 @@
+/* pc */
+@media (min-width:64em) {
+    .hide-pc {
+        display: none;
+    }
+}
+/* tablet and pc */
+@media (min-width:46.25em) {
+    .hide-tablet-and-pc {
+        display: none;
+    }
+    #header li:first-child {
+        display: none;
+    }
+    #header label {
+        display: none;
+    }
+}
+/* tablet & mobile */
+@media (min-width:46.25em)and (max-width:63.9375em), (max-width:739px) {
+.hide-tablet-and-mobile {
+    display: none;
+}
+.subnav li a {
+    padding: 0px;
+}
+}
+
+/* tablet */
+@media (min-width:46.25em)and (max-width:63.9375em) {
+    .hide-tablet {
+        display: none;
+    }
+    .search_input{
+        width: 250px;
+    }
+}
+/* mobile */
+@media (max-width:46.1875em) {
+    .hide-mobile {
+        display: none;
+    }
+    li#home {
+        display: none;
+    }
+    .search_input{
+        display: none;
+    }
+    .cartbtn {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+    #header li#logout {
+        display: none;
+    }
+    .nav_mobile {
+        background-color: #fff;
+        color: #000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0; 
+        width: 250px;    
+        height: 350px; 
+        border-radius: 5px;
+    }
+   
+    .nav_overlay {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background-color: rgba(0, 0, 0, 0.3);
+        display: none;
+        animation: overlayin linear 0.5s;
+    }
+
+    #header .homeicon:hover {
+        background-color: #fff;
+        color: #000;
+        
+    }
+    #header .homeicon {
+        display: block;
+        font-weight: 600;
+        line-height: 46px;
+        cursor: pointer;
+        padding: 0 16px;
+    }
+    .nav_mobile {
+        padding-top: 24px;
+        transform: translateX(-100%);
+        animation: navMobile reverse 3.5s;
+        transition: transform linear 0.5s;
+    }
+    .sub_nav-mobile {
+        margin: 12px;
+    }
+    .sub_nav-mobile:hover a {
+        background-color: #000;
+        color: #fff;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+    }
+    .sub_nav-mobile a {
+        text-decoration: none;
+        color: #000;
+        font-size: 18px;
+        display: block;
+        padding: 16px 16px;
+    }
+    .closeicon:hover {
+        background-color: #000;
+        color: #fff;
+    }
+    .closeicon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 8px;
+        cursor: pointer;
+
+    }
+    .input:checked ~ .nav_overlay {
+        display: block;
+    }
+    .input:checked ~ .nav_mobile {
+        transform: translateX(0%) ;
+    }
+
+    @keyframes overlayin {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes navMobile {
+        from {
+            background-color: deeppink;
+        }
+        to {
+            background-color: #fff;
+        }
+    }
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin</title>
+</head>
+<style>
+    * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+    }
+
+    #main {
+        background-color: antiquewhite;
+        width: auto;
+        height:auto;
+
+    }
+
+    .heading {
+        text-align: center;
+        color: deeppink;
+        font-weight: 600;
+        margin-top: 16px;
+    }
+
+    .add-product {
+        padding: 16px;
+        border: 1px dashed deeppink;
+        width: 800px;
+        height: 500px;
+        margin: 32px auto;
+        background-color: #fff;
+    }
+
+    .addproduct-heading {
+        margin-bottom: 16px;
+    }
+
+    .product {
+        margin-bottom: 8px;
+        margin-left: 8px;
+        ;
+    }
+
+    .btn:hover {
+        opacity: 0.6;
+    }
+
+    .btn {
+        margin-top: 16px;
+        padding: 8px;
+        background-color: deeppink;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+    }
+
+    label {
+        line-height: 1.6;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    input {
+        padding: 4px;
+        width: 100%;
+    }
+</style>
+
+<body>
+    <div id="main">
+        <h2 class="heading">Admin - Quản lý</h2>
+        <div class="add-product">
+            <label for="">Nhập mô tả sản phẩm</label> <br>
+            <input type="text" name="" id="product-name"><br>
+            <label for="">Nhập giá sản phẩm</label> <br>
+            <input type="text" name="" id="product-price"><br>
+            <label for="">Thêm ảnh</label> <br>
+            <input type="file" name="" id="product-img"><br>
+            <label for="">Nhập Id sản phẩm</label> <br>
+            <input type="text" name="" id="product-id"><br>
+            <input onclick="addproduct()" type="button" value="Thêm sản phẩm">
+        </div>
+        <div class="list-product">
+            <h2 class="heading">Admin - Danh sách sản phẩm</h2>
+            <div class="add-product">
+                <table border="1px" id="tab">
+                    <tr>
+                        <td>STT</td>
+                        <td>Mô tả sản phẩm</td>
+                        <td>Giá</td>
+                        <td>Ảnh</td>
+                        <td>Sửa</td>
+                        <td>Xóa</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Mô tả sản phẩm</td>
+                        <td>Giá</td>
+                        <td>Ảnh</td>
+                        <td><button id="edit-btn" onclick="editProduct()">Sửa</button></td>
+                        <td><button id="delete-btn" onclick="deleteProduct()">Xóa</button></td>
+                    </tr>
+                </table>
+               
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addproduct() {
+            let product = JSON.parse(localStorage.getItem('product'));
+            let productDesc = document.getElementById('product-name').value;
+            let productPrice = document.getElementById('product-price').value;
+            let productImg = document.getElementById('product-img');
+            let productId = document.getElementById('product-id').value;
+            let productInfo = {
+                img: productImg,
+                description: productDesc,
+                price: productPrice,
+                id: productId,
+            }
+            product.push(productInfo);
+            console.log(product);
+            localStorage.setItem('product',JSON.stringify(product));
+            renderListProduct()
+            
+        }
+        
+        function renderListProduct() {
+            let product = JSON.parse(localStorage.getItem('product'));
+            let sum = 0;
+            let result = `<tr>
+                        <td>STT</td>
+                        <td>Mô tả sản phẩm</td>
+                        <td>Giá</td>
+                        <td>Ảnh</td>
+                        <td>Id</td>
+                        <td>Sửa</td>
+                        <td>Xóa</td>
+                    </tr>`
+            for (let i = 0; i < product.length; i++) {
+                result+= 
+                `
+                <tr>
+                        <td>${sum+=1}</td>
+                        <td>${product[i].description}</td>
+                        <td>${product[i].price}</td>
+                        <td>${product[i].img}</td>
+                        <td>${product[i].id}</td>
+                        <td><button id="edit-btn" onclick="editProduct(${i})">Sửa</button></td>
+                        <td><button id="delete-btn" onclick="deleteProduct(${i})">Xóa</button></td>
+                    </tr>
+                `
+            }localStorage.setItem('product',JSON.stringify(product));
+            document.getElementById('tab').innerHTML = result;
+        }renderListProduct()
+        function editProduct(id) {
+            let product = JSON.parse(localStorage.getItem('product'));
+            document.getElementById('product-name').value = product[id].description;
+            document.getElementById('product-price').value = product[id].price;
+            document.getElementById('product-img').value = product[id].img;
+            document.getElementById('product-id').value = product[id].id;
+        }
+        function deleteProduct(id) {
+            let product = JSON.parse(localStorage.getItem('product'));
+            product.splice(id,1);
+            localStorage.setItem('product',JSON.stringify(product));
+            renderListProduct()
+        }
+    </script>
+</body>
+
+</html>

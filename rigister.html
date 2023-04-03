@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký thành viên</title>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        #main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #d0cae1;
+            min-height: 100vh;
+        }
+
+        h2 {
+            margin-bottom: 16px;
+            text-align: center;
+            color: deeppink;
+            font-size: 34px;
+            font-weight: 600;
+        }
+
+        .content {
+            position: relative;
+            background-color: black;
+            background: linear-gradient(to right, #807894, rgb(244, 204, 204));
+            border-radius: 8px;
+            width: 400px;
+            height: 450px;
+            font-size: 16px;
+            padding: 16px;
+
+        }
+
+        #email,
+        #password,
+        #confirmPass {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        label {
+            color: #fff;
+            font-size: 18px
+        }
+
+        #registerBtn {
+            background-color: deeppink;
+            width: 100%;
+            padding: 16px;
+            box-shadow: 0 2px 2px rgb(246, 37, 89);
+            border-radius: 5px;
+            border: none;
+            margin-top: 24px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 3px 3px hsl(307, 84%, 70%);
+        }
+
+        #registerBtn:hover {
+            background-color: #d85ae1;
+        }
+
+        #loi {
+            margin-top: 16px;
+            color: red;
+            font-style: italic;
+        }
+        #back:hover {
+            opacity: 0.6;
+            cursor: pointer;
+        }
+        #back {
+            position: absolute;
+            right: 16px;
+            margin-top: 16px;
+            padding: 6px;
+            background-color: #c674d7;
+            border-radius: 5px;
+            border: none;
+        }
+    </style>
+    <div id="main">
+        <div class="content">
+            <h2>Đăng ký</h2>
+            <label for="">Email</label><br>
+            <input placeholder="Enter your email address" type="email" name="email" id="email"> <br>
+            <label for="">Password</label><br>
+            <input placeholder="Enter your password" type="password" name="password" id="password"><br>
+            <label for="">Confirm Password</label><br>
+            <input placeholder="Enter your confirm password" type="password" name="confirmPass" id="confirmPass"><br>
+            <input id="registerBtn" onclick="addUser()" type="button" value="Đăng ký"><br>
+            <input id="back" onclick="back()" type="button" value="Quay lại"><br>
+            <p id="loi"></p>
+        </div>
+    </div>
+
+
+    <script>
+        function addUser() {
+            let listUser = JSON.parse(localStorage.getItem('listUser'))
+            if (listUser == null) {
+                listUser = [];
+            }
+            let checkUser = true;
+            let userEmail = document.getElementById('email').value;
+            let userPass = document.getElementById('password').value;
+            let userConfirmPass = document.getElementById('confirmPass').value;
+            let userError = '';
+            let userInfo = {
+                email: userEmail,
+                password: userPass,
+                cart: []
+            }
+            if (userEmail != '') {
+                let reg_email = /^[A-Za-z0-9]+([_\.\-]?[A-Za-z0-9])*@[A-Za-z0-9]+([\.\-]?[A-Za-z0-9]+)*(\.[A-Za-z]+)+$/;
+                if (reg_email.test(userEmail) == false) {
+                    userError += 'Email không hợp lệ.<br/>'
+                    document.getElementById('loi').innerHTML = userError;
+                    checkUser = false;
+                    console.log(checkUser);
+                }
+            }
+            if (userPass === '') {
+                userError += 'Hãy nhập password.<br/>';
+                document.getElementById('loi').innerHTML = userError;
+                checkUser = false;
+            }
+            if (userPass.length < 6 || userPass.length > 20) {
+                userError += 'Password phải có độ dài từ 6-20 ký tự. <br/>';
+                document.getElementById('loi').innerHTML = userError;
+                checkUser = false;
+            }
+            if (userPass != userConfirmPass) {
+                userError += 'Nhập lại mật khẩu chưa chính xác.</br>'
+                document.getElementById('loi').innerHTML = userError;
+                checkUser = false;
+            }
+            for (let i = 0; i < listUser.length; i++) {
+                if (listUser[i].email === userEmail) {
+                    userError += 'Tài khoản đã được đăng ký.</br>';
+                    document.getElementById('loi').innerHTML = userError;
+                    checkUser = false;
+                }
+            }
+
+
+            if (checkUser) {
+                listUser.push(userInfo)
+                localStorage.setItem('listUser', JSON.stringify(listUser))
+                location.assign('./login.html')
+
+            }
+        }
+           function back() {
+            location.assign('./index.html')
+           }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

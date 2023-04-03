@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập tài khoản</title>
+</head>
+<body>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        #main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #d0cae1;
+            min-height: 100vh;
+        }
+
+        h2 {
+            margin-bottom: 16px;
+            text-align: center;
+            color: deeppink;
+            font-size: 36px;
+            font-weight: 600;
+        }
+
+        .content {
+            position: relative;
+            background-color: black;
+            background: linear-gradient(to right, #807894, rgb(244, 204, 204));
+            border-radius: 8px;
+            width: 400px;
+            height: 450px;
+            font-size: 16px;
+            padding: 16px;
+
+        }
+
+        #email,
+        #password {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 16px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        label {
+            color: #fff;
+            font-size: 20px;
+        }
+
+        #loginBtn {
+            background-color: deeppink;
+            width: 100%;
+            padding: 16px;
+            box-shadow: 0 2px 2px rgb(246, 37, 89);
+            border-radius: 5px;
+            border: none;
+            margin-top:32px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 3px 3px hsl(307, 84%, 70%);
+        }
+
+        #loginBtn:hover {
+            background-color: #d85ae1;
+        }
+
+        #loi {
+            margin-top: 16px;
+            color: red;
+            font-style: italic;
+        }
+        #back:hover {
+            opacity: 0.6;
+            cursor: pointer;
+        }
+        #back {
+            position: absolute;
+            right: 16px;
+            margin-top: 16px;
+            padding: 6px;
+            background-color: #c674d7;
+            border-radius: 5px;
+            border: none;
+        }
+    </style>
+    <div id="main">
+        <div class="content">
+            <h2>Đăng nhập</h2>
+            <label for="">Email</label><br>
+            <input placeholder="Enter your email address" type="email" name="email" id="email"> <br>
+            <label for="">Password</label><br>
+            <input placeholder="Enter your password" type="password" name="password" id="password"><br>
+            <input id="loginBtn" onclick="loginFunction()" type="button" value="Đăng nhập"><br>
+            <input id="back" onclick="back()" type="button" value="Quay lại"><br>
+            <p id="loi"></p> <a href="./rigister.html">Đăng ký ngay </a>  <br>
+            
+        </div>
+    </div>
+    <script src="./acsset/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quần áo trẻ em - BibaShop</title>
+    <link rel="stylesheet" href="../myShop/acsset/css/stylecart.css">
+    <link rel="stylesheet" href="../myShop/acsset/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="../bootstrap/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <script src="../bootstrap/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <div id="main">
+        <header>
+            <div id="header">
+                <ul>
+                    <li><a href="index.html"><i class="homeicon ti-home"></i> Trang chủ</a></li>
+                    <li><form class="searchform" action="">
+                        <input id="input" class="input" type="text" placeholder="Bạn đang tìm gì cho bé vậy?" name="search">
+                        <button onclick="searchFunction()" class="searchbtn" type="submit"><i class="searchbtn ti-search"></i></button>
+                    </form></li>
+                    <li id="cartbtn"><a href="./cart.html"><i class="carticon ti-shopping-cart"></i>Giỏ hàng</a></li>
+                    <li id="login"><a class="" href="./login.html"><i class="usericon ti-user"></i>Đăng nhập</a></li>
+                    <li  id="register"><a href="./rigister.html"><i class="usericon ti-slice"></i> Đăng ký</a></li> 
+                    <li  id="logout"><a href="#" onclick="logout()"><i class="usericon ti-shift-right"></i> Đăng xuất</a></li> 
+                </ul>
+            </div>
+    </div>
+
+    </header>
+
+    <div id="container">
+        <div class="subnav">
+            <li><a href=""><i class="handicon ti-hand-point-right"></i> Quần áo bé trai</a></li>
+            <li><a href=""><i class="handicon ti-hand-point-right"></i>Quần áo bé gái</a></li>
+            <li><a href=""><i class="handicon ti-hand-point-right"></i>Phụ kiện</a></li>
+            <li><a href=""><i class="handicon ti-hand-point-right"></i>Bán chạy</a></li>
+            <li><a href=""><i class="handicon ti-hand-point-right"></i>Hàng mới về</a></li>
+        </div>
+        <div class="content">
+            <h2 class="heading">Giỏ hàng của bạn</h2>
+            <div class="row bestSeller" id="bestSeller">
+
+            </div>
+            <h2 class="heading">Giỏ hàng Yêu thích</h2>
+            <div class="row likecart" id="likecart">
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <div id="footer">
+        <div class="socials-list">
+            <a href=""><i class="ti-facebook"></i></a>
+            <a href=""><i class="ti-youtube"></i></a>
+            <a href=""><i class="ti-instagram"></i></a>
+            <a href=""><i class="ti-twitter"></i></a>
+            <a href=""><i class="ti-pinterest"></i></a>
+            <a href=""><i class="ti-linkedin"></i></a>
+        </div>
+        <p class="coppyright">
+            Liên hệ với chúng tôi ngay để đặt hàng <a href="tel:19001995">19001995</a>
+        </p>
+    </div>
+    </div>
+    <script>
+        let flag = localStorage.getItem('flag');
+let loginBtn = document.querySelector('#login')
+let rigisterBtn = document.querySelector('#register')
+let userName = document.querySelector('#logout')
+if (flag) {
+    loginBtn.style.display = 'none';
+    rigisterBtn.style.display = 'none';
+    userName.style.display = 'block';
+    flag = false;
+    localStorage.setItem('flag',flag);
+}
+function logout() {
+        document.querySelector('#login').style.display = 'block';
+        document.querySelector('#register').style.display = 'block';
+        document.querySelector('#logout').style.display = 'none'; 
+}
+        let listCart = JSON.parse(localStorage.getItem('listCart'))
+        function renderCart() {
+            let result = ''
+            for (let i = 0; i < listCart.length; i++) {
+                result +=
+                    `
+    <div class="item col-sm-6 col-md-6 col-lg-3 col-xl-3">
+    <img src="${listCart[i].img}" alt="">
+    <p class="description">${listCart[i].description}</p>
+    <p class="price">${listCart[i].price}</p>
+    <button id="cartbtnadd" onclick="pay(${i})" type="submit">Thanh toán</button>
+    <button class='deleteBtn' id="deleteBtn" onclick="deleteCart(${i})">Xóa <i class="ti-close"></i></button>
+    </div>
+    `
+            } document.getElementById('bestSeller').innerHTML = result;
+
+        } renderCart()
+        // like cart
+        let likeCart = JSON.parse(localStorage.getItem('likeCart'))
+        if (likeCart == null) {
+            likeCart = [];
+        }
+        function renderLikeCart() {
+            let result = ''
+            for (let i = 0; i < likeCart.length; i++) {
+                result +=
+                    `
+    <div class="item col-sm-6 col-md-6 col-lg-3 col-xl-3">
+    <img src="${likeCart[i].img}" alt="">
+    <p class="description">${likeCart[i].description}</p>
+    <p class="price">${likeCart[i].price}</p>
+    <button id="cartbtnadd" onclick="pay(${i})" type="submit">Thanh toán</button>
+    <button class='deleteBtn' id="deleteBtn" onclick="deleteLikeCart(${i})">Xóa  <i class="ti-close"></i></button>
+    </div>
+    `
+    } document.getElementById('likecart').innerHTML = result;
+        } renderLikeCart()
+
+    function deleteLikeCart(id) {
+        console.log(id);
+        likeCart.splice(id,1)
+        localStorage.setItem('likeCart',JSON.stringify(likeCart))
+        renderLikeCart()
+    }
+
+    function deleteCart(id) {
+            listCart.splice(id,1)
+        localStorage.setItem('listCart',JSON.stringify(listCart))
+        renderCart()
+        
+    }
+    </script>
+</body>
+
+</html>
