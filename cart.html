@@ -6,35 +6,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quần áo trẻ em - BibaShop</title>
-    <link rel="stylesheet" href="../myShop/acsset/css/stylecart.css">
-    <link rel="stylesheet" href="../myShop/acsset/font/themify-icons/themify-icons.css">
-    <link rel="stylesheet" href="../bootstrap/bootstrap-5.0.2-dist/css/bootstrap.min.css">
-    <script src="../bootstrap/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./acsset/css/stylecart.css">
+    <link rel="stylesheet" href="./acsset/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="./bootstrap/bootstrap-5.0.2-dist/js/bootstrap.min.js">
+    <link rel="stylesheet" href="./acsset/css/responsive.css">
+    <script src="./bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
 
 </head>
 
 <body>
-    <div id="main">
-        <header>
-            <div id="header">
-                <ul>
-                    <li><a href="index.html"><i class="homeicon ti-home"></i> Trang chủ</a></li>
-                    <li><form class="searchform" action="">
-                        <input id="input" class="input" type="text" placeholder="Bạn đang tìm gì cho bé vậy?" name="search">
-                        <button onclick="searchFunction()" class="searchbtn" type="submit"><i class="searchbtn ti-search"></i></button>
-                    </form></li>
-                    <li id="cartbtn"><a href="./cart.html"><i class="carticon ti-shopping-cart"></i>Giỏ hàng</a></li>
-                    <li id="login"><a class="" href="./login.html"><i class="usericon ti-user"></i>Đăng nhập</a></li>
-                    <li  id="register"><a href="./rigister.html"><i class="usericon ti-slice"></i> Đăng ký</a></li> 
-                    <li  id="logout"><a href="#" onclick="logout()"><i class="usericon ti-shift-right"></i> Đăng xuất</a></li> 
-                </ul>
-            </div>
+
+    <div id="header">
+        <ul>
+            
+            <li id="menu" class="hide-tablet-and-pc">
+                <label for="nav_input"><i class="homeicon ti-menu"></i> </label>
+                <input type="checkbox" hidden name="" class="input" id="nav_input">
+                <label for="nav_input" class="nav_overlay"></label>
+                <div class="nav_mobile">
+                    <label for="nav_input" class="closeicon ti-close"></label>
+                    <div class="sub_nav-mobile"><a href="index.html"><i class="homeicon ti-home"></i> Trang chủ</a></div>
+                        <div class="sub_nav-mobile"><a href=""><i class="handicon ti-hand-point-right"></i> Quần áo bé trai</a></div>
+                        <div  class="sub_nav-mobile" ><a href=""><i class="handicon ti-hand-point-right"></i>Quần áo bé gái</a></div>
+                        <div class="sub_nav-mobile"><a href=""><i class="handicon ti-hand-point-right"></i>Phụ kiện</a></div>
+                        <div class="sub_nav-mobile"><a href=""><i class="handicon ti-hand-point-right"></i>Bán chạy</a></div>
+                        <div class="sub_nav-mobile"><a href=""><i class="handicon ti-hand-point-right"></i>Hàng mới về</a></div>
+                </div>
+            </li>
+
+            <li id="home"><a href="index.html"><i class="homeicon ti-home"></i> Trang chủ</a></li>
+            <li>
+                <form class="searchform" action="">
+                    <input id="input" class="search_input" type="text" placeholder="Bạn đang tìm gì cho bé vậy?"
+                        name="search">
+                    <button onclick="searchFunction()" class="searchbtn hide-mobile" type="submit"><i
+                            class="searchbtn ti-search"></i></button>
+                </form>
+            </li>
+            <li class = 'hide-mobile' id="login"><a class="" href="./login.html"><i class="usericon ti-user"></i>Đăng nhập</a></li>
+            <li class = 'hide-mobile' id="register"><a href="./rigister.html"><i class="usericon ti-slice"></i> Đăng ký</a></li>
+            <li id="logout"><a href="#" onclick="logout()"><i class="usericon ti-shift-right"></i> Đăng xuất</a>
+            </li>
+            <li class="cartbtn"><a href="./cart.html"><i class="carticon ti-shopping-cart"></i>Giỏ hàng</a></li>
+        </ul>
+     
+        
     </div>
+</div>
 
     </header>
 
     <div id="container">
-        <div class="subnav">
+        <div class="subnav hide-mobile">
             <li><a href=""><i class="handicon ti-hand-point-right"></i> Quần áo bé trai</a></li>
             <li><a href=""><i class="handicon ti-hand-point-right"></i>Quần áo bé gái</a></li>
             <li><a href=""><i class="handicon ti-hand-point-right"></i>Phụ kiện</a></li>
